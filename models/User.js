@@ -8,9 +8,13 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    lists: {
+        type: Array,
+        default: []
     }
 }, {
     versionKey: false
 });
 
-module.exports = mongoose.model('Users', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

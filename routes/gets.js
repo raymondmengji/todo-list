@@ -5,8 +5,8 @@ const User = require('../models/User');
 // get all
 router.get('/', async(req, res) => {
     try {
-        const posts = await User.find();
-        res.status(200).json(posts);
+        const users = await User.find();
+        res.status(200).json(users);
     }
     catch(err) {
         res.status(400).json({msg: err});
@@ -16,8 +16,8 @@ router.get('/', async(req, res) => {
 // get by id
 router.get('/:id', async(req, res) => {
     try {
-        const post = await User.findById(req.params.id);
-        res.status(200).json(post);
+        const user = await User.findById(req.params.id);
+        res.status(200).json(user);
     }
     catch(err) {
         res.status(400).json({msg: err});
