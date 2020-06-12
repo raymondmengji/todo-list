@@ -14,15 +14,4 @@ router.delete('/:id', async(req, res) => {
     }
 });
 
-router.delete('/:userID/lists/:listID', async(req, res) => {
-    try{
-        User.findById({_id: req.params.id}, (err, user) => {
-
-        });
-    }
-    catch(err) {
-        res.status(400).json({msg: err});
-    }
-});
-
 module.exports = router;
