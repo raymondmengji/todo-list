@@ -60,7 +60,6 @@ router.patch('/:userID/lists/:listID', async(req, res) => {
 });
 
 //remove all lists from user
-
 router.patch('/:id/clear', async(req, res) => {
     try{
         const updatedUser = await User.updateOne({_id: req.params.id}, {$set: {lists: []}});
@@ -72,6 +71,17 @@ router.patch('/:id/clear', async(req, res) => {
 });
 
 //remove specific list from user
+router.patch('/:userID/clear/:listID', async(req, res) => {
+    try{
+        const user = await User.findById(req.params.userID);
+        const updatedUser = await User.updateOne({_id: req.params.userID}, 
+            {$set: {lists: user.lists.filter(item => item._id != req.params.listID)}});
+        res.status(200).json(updatedUser);
+    }
+    catch(err) {
+        res.status(400).json({msg: err});
+    }
+});
 
 
 module.exports = router;
