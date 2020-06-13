@@ -60,8 +60,6 @@ class Dashboard extends Component {
             </button>
             
             <Lists />
-            
-    
           </div>
         </div>
       </div>
