@@ -4,7 +4,6 @@ import './List.css';
 class List extends Component {
     render(){
         const { name, items, time } = this.props;
-        console.log(name, items, time)
 
         const temp = [];
         for (var i = 0; i < items.length; i++) {

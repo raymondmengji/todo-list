@@ -2,11 +2,7 @@ import axios from "axios";
 
 export const getUser = (id) => dispatch => {
     try{
-        // return axios.get(`/${id}`).then((res) => {
-        //     console.log(res.data);
-        //     return res.data;
-        // });
-        const response = axios.get(`/api/${id}`);
+        const response = axios.get(`/${id}`);
         return response;
     }
     catch(err) {

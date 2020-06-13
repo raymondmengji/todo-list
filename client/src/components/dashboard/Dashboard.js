@@ -6,6 +6,20 @@ import { addList } from "../../apicalls/patches";
 import { getUser } from "../../apicalls/gets";
 import List from "../lists/List";
 class Dashboard extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [],
+      name: "",
+      time: "",
+      checker: true,
+      listObj: null
+    }
+  }
+
+
+
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
@@ -17,26 +31,22 @@ class Dashboard extends Component {
   };
 
   async getList() {
-    console.log(this.props.auth.user.id);
     const {lists} = await this.props.getUser(this.props.auth.user.id).then(result => result.data);
     if (lists.length > 0) {
       const test_elem = lists[0];
       const { items, name, time } = test_elem;
       console.log(items, name, time)
-      return {
-        items: items,
-        name: name,
-        time: time
-      }
+      this.setState({ items });
+      this.setState({ name });
+      this.setState({ time });
     }
   }
 
   makeList() {
-    const {items, name, time} = this.getList().then(result => result.data);
-    //console.log(items, name, time)
+    this.getList();
+    const {items, name, time} = this.state;
     return <List items={items} name={name} time={time} />
   }
-
 
 
 
@@ -44,8 +54,14 @@ class Dashboard extends Component {
   render() {
     const { user } = this.props.auth;
 
-    const comp = this.makeList();
-    console.log(comp)
+    if(this.state.checker) {
+      let checker = false;
+      this.setState({checker});
+      let listObj = this.makeList();
+      this.setState({listObj});
+      console.log(listObj);
+    }
+    
     
     return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
@@ -83,6 +99,8 @@ class Dashboard extends Component {
             >
               Add List
             </button>
+
+            
     
           </div>
         </div>
