@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getUser } from "../../apicalls/gets";
 import List from "./List";
+import './Lists.css';
+
 
 class Lists extends Component {
 
@@ -12,7 +14,7 @@ class Lists extends Component {
              items: [],
              name: "",
              time: "",
-             comp: null,
+             comp: [],
              checker: true
         }
     }
@@ -21,14 +23,18 @@ class Lists extends Component {
     async getList() {
         const {lists} = await this.props.getUser(this.props.auth.user.id).then(result => result.data);
         if (lists.length > 0) {
-          const test_elem = lists[0];
-          const { items, name, time } = test_elem;
-          this.setState({ items, name, time }, () => {
-            const {items, name, time} = this.state;
-            const comp = <List items={items} name={name} time={time} />
-            this.setState({ comp })
-          });
 
+            for (var i = 0; i < lists.length; i++) {
+                const test_elem = lists[i];
+                const {items, name, time } = test_elem;
+                this.setState({ items, name, time}, () => {
+                    const {items, name, time} = this.state;
+                    const temp = <List items={items} name={name} time={time} />
+                    const comp = this.state.comp;
+                    comp.push(temp);
+                    this.setState({ comp })
+                });
+            }
         }
       }
     

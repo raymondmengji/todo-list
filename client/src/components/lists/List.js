@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './List.scss';
+import './List.css';
 
 class List extends Component {
     render(){
@@ -7,14 +7,19 @@ class List extends Component {
 
         const temp = [];
         for (var i = 0; i < items.length; i++) {
-            temp.push(<input id={i} type="checkbox" name="r" value={i}></input>);
-            temp.push(<label for={i}>{items[i].name}</label>);
+            temp.push(<input id={items[i]._id} type="checkbox" name="r" value={items[i]._id} />);
+            temp.push(<label for={items[i]._id}>{items[i].name}</label>);
         }
 
         return(
-            <div id="checklist">
-                {temp}
+            <div id="wrapper">
+                <h1>{name}</h1>
+                <div id="checklist">
+                    {temp}
+                </div>
+                <h2>{time}</h2>
             </div>
+            
         );
     }
 }
