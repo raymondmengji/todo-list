@@ -14,9 +14,9 @@ const patchesRoute = require('./routes/patches');
 const usersRoute = require('./routes/users');
 
 //app.use('/', postsRoute);
-app.use('/', getsRoute);
-app.use('/', deletesRoute);
-app.use('/', patchesRoute)
+app.use('/api', getsRoute);
+app.use('/api', deletesRoute);
+app.use('/api', patchesRoute)
 
 
 connectDB();
@@ -27,7 +27,7 @@ app.use(passport.initialize());
 require('./passport')(passport);
 
 
-app.use('/', usersRoute)
+app.use('/api', usersRoute)
 
 const PORT = process.env.PORT || 5000;
 
