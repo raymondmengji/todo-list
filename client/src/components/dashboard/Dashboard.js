@@ -3,22 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { addList } from "../../apicalls/patches";
-import { getUser } from "../../apicalls/gets";
-import List from "../lists/List";
+import Lists from "../lists/Lists";
+
 class Dashboard extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-      name: "",
-      time: "",
-      checker: true,
-      listObj: null
-    }
-  }
-
-
 
   onLogoutClick = e => {
     e.preventDefault();
@@ -30,38 +17,10 @@ class Dashboard extends Component {
     this.props.addList(this.props.auth.user.id);
   };
 
-  async getList() {
-    const {lists} = await this.props.getUser(this.props.auth.user.id).then(result => result.data);
-    if (lists.length > 0) {
-      const test_elem = lists[0];
-      const { items, name, time } = test_elem;
-      console.log(items, name, time)
-      this.setState({ items });
-      this.setState({ name });
-      this.setState({ time });
-    }
-  }
-
-  makeList() {
-    this.getList();
-    const {items, name, time} = this.state;
-    return <List items={items} name={name} time={time} />
-  }
-
-
-
+  
 
   render() {
     const { user } = this.props.auth;
-
-    if(this.state.checker) {
-      let checker = false;
-      this.setState({checker});
-      let listObj = this.makeList();
-      this.setState({listObj});
-      console.log(listObj);
-    }
-    
     
     return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
@@ -99,7 +58,8 @@ class Dashboard extends Component {
             >
               Add List
             </button>
-
+            
+            <Lists />
             
     
           </div>
@@ -111,14 +71,13 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   addList: PropTypes.func.isRequired,
-  getUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  List: PropTypes.elementType.isRequired
+  Lists: PropTypes.elementType.isRequired
 };
 const mapStateToProps = state => ({
   auth: state.auth
 });
 export default connect(
   mapStateToProps,
-  { logoutUser, addList, getUser, List }
+  { logoutUser, addList, Lists }
 )(Dashboard);
