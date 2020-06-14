@@ -4,26 +4,35 @@ import './Item.css';
 
 class Item extends Component {
 
+    componentDidMount() {
+        var status = localStorage.getItem(this.props._id);
+        if(status != null) {
+            console.log(this.props.name, status);
+            status = (status === 'true');
+            this.setState({ status })
+        }
+    }
+
+
     validate() {
+        var status = true;
         if(document.getElementById(this.props._id) != null) {
-            console.log(this.props.name, this.state.status);
             if(document.getElementById(this.props._id).checked) {
                 console.log(this.props._id, "checked")
-                if (this.state.status = true) {
-                    console.log("changed")
-                    this.setState({status: false})
-                }
+                status = false;
             }
             else {
-                if (this.state.status = false) {
-                    this.setState({status: true})
-                }
+                console.log("unchecked")
+                status = true;
             }
+
         }
         else {
-            this.setState({status: true})
+            status = true;
         }
-        console.log(this.props.name, this.state.status);
+        localStorage.setItem(this.props._id, status)
+        console.log(status, localStorage.getItem(this.props._id))
+        this.setState({ status })
     }
 
     constructor(props) {
@@ -35,7 +44,7 @@ class Item extends Component {
     }
     
     render() {
-
+        console.log("rendering...", this.props.name, this.state.status)
         if(this.state.status) {
             return(
                 <>
@@ -45,7 +54,6 @@ class Item extends Component {
             )
         }
         else {
-            console.log("render already checked box")
             return(
                 <>
                     <input id={this.props._id} type="checkbox" name="r" value={this.props._id} onClick={() => this.validate()} checked/>
