@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Item from "./Item";
+import Add from './Add';
 
 import './List.css';
 
@@ -26,6 +27,7 @@ class List extends Component {
                 <div id="checklist">
                     {temp}
                 </div>
+                <Add listID={this.props._id} />
                 <h2>{time}</h2>
             </div>
             
@@ -33,7 +35,8 @@ class List extends Component {
     }
 }
 List.propTypes = {
-    Item: PropTypes.elementType.isRequired
+    Item: PropTypes.elementType.isRequired,
+    Add: PropTypes.elementType.isRequired
 }
 
 export default List;

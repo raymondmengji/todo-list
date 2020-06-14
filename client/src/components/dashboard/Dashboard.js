@@ -15,6 +15,7 @@ class Dashboard extends Component {
   onAddListClick = e => {
     e.preventDefault();
     this.props.addList(this.props.auth.user.id);
+    window.location.href = "./dashboard";
   };
 
   

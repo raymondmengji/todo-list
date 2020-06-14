@@ -14,6 +14,7 @@ class Lists extends Component {
              items: [],
              name: "",
              time: "",
+             _id: "",
              comp: [],
              checker: true
         }
@@ -26,10 +27,10 @@ class Lists extends Component {
 
             for (var i = 0; i < lists.length; i++) {
                 const test_elem = lists[i];
-                const {items, name, time } = test_elem;
-                this.setState({ items, name, time}, () => {
-                    const {items, name, time} = this.state;
-                    const temp = <List items={items} name={name} time={time} />
+                const {items, name, time, _id } = test_elem;
+                this.setState({ items, name, time, _id }, () => {
+                    const {items, name, time, _id } = this.state;
+                    const temp = <List items={items} name={name} time={time} _id={_id} />
                     const comp = this.state.comp;
                     comp.push(temp);
                     this.setState({ comp })
