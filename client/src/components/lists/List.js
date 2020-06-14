@@ -1,14 +1,23 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Item from "./Item";
+
 import './List.css';
 
 class List extends Component {
+
     render(){
         const { name, items, time } = this.props;
 
         const temp = [];
         for (var i = 0; i < items.length; i++) {
-            temp.push(<input id={items[i]._id} type="checkbox" name="r" value={items[i]._id} />);
-            temp.push(<label for={items[i]._id}>{items[i].name}</label>);
+            const { _id, name } = items[i];
+            if (_id == null || name == null) {
+                i -=1
+            }
+            else {
+                temp.push(<Item _id={_id} name={name} />);
+            }
         }
 
         return(
@@ -22,6 +31,9 @@ class List extends Component {
             
         );
     }
+}
+List.propTypes = {
+    Item: PropTypes.elementType.isRequired
 }
 
 export default List;

@@ -45,14 +45,32 @@ class Lists extends Component {
         if (this.state.comp != null) {
             const temp = this.state.comp;
             this.state.checker = false;
+
+            var text = "";
+
+            if(temp.length > 0) {
+                text = "My Lists"
+            }
+            else {
+                text = "You don't have any lists 😞, add one!"
+            }
+
             return(
-                <div id="lists">
-                    {temp}
+                <div id="outside">
+                    <p className="flow-text grey-text text-darken-1">
+                        {text}
+                    </p>
+                    <div id="lists">
+                        {temp}
+                    </div>
                 </div>
+                
             )
         }
         return (
-            <div></div>
+            <div>
+                
+            </div>
         )
     }
 }

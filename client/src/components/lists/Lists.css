@@ -1,5 +1,8 @@
 #lists {
-    margin-top: 20px;
-    margin-left:80px;
+    margin-left:45px;
     position: absolute;
+}
+
+#outside {
+    margin-top: 40px;
 }
