@@ -29,4 +29,14 @@ export const changeListName = (userID, listID, name) => dispatch => {
     catch(err) {
 
     }
+};
+
+export const deleteList = (userID, listID) => dispatch => {
+    try{
+        const response = axios.patch(`/${userID}/clear/${listID}`);
+        console.log(response)
+    }
+    catch(err) {
+        
+    }
 }
