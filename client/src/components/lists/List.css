@@ -3,8 +3,8 @@
     --text: #414856;
     --check: #4F29F0;
     --disabled: #C3C8DE;
-    /* --width: 100px;
-    --height: 140px; */
+    /* --width: 150px; */
+    /* --height: 140px; */
     --border-radius: 10px;
     /* background: var(--background); */
     width: var(--width);
@@ -19,6 +19,7 @@
     -webkit-box-align: center;
             align-items: center;
     /* border: 1px solid black; */
+    margin-bottom:0px;
   }
   #checklist label {
     color: var(--text);
@@ -300,17 +301,31 @@
     margin:auto;
     box-shadow: 0 10px 30px #949fb0;
     margin-bottom:20px;
-  } 
+  }
+  #wrapper {
+    width:230px;
+  }
 
-  #wrapper h1 {
+  #wrapper input {
       font-size: 16px;
       margin-top:20px;
       margin-bottom:0px;
-      width:240px;
+      width:170px;
+      border-bottom: 0.5px solid #9c9c9c;
+      text-align: center;
   }
   #wrapper h2 {
     font-size: 10px;
-    margin-top: 0px;
+    margin-top: 20px;
+}
+
+.h1placeholder::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+  opacity: 1; /* Firefox */
+}
+
+input:focus::placeholder {
+  color: transparent;
 }
 
   

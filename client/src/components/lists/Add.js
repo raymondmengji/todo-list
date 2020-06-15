@@ -29,7 +29,7 @@ class Add extends Component {
     render() {
         return(
             <form noValidate onSubmit={this.onSubmit}>
-                <input type="text" onChange={this.onChange} id="name"></input>
+                <input type="text" onChange={this.onChange} id="name" placeholder="Add an item!"></input>
             </form>
         )
     }

@@ -20,3 +20,13 @@ export const addToList = (userID, listID, item) => dispatch => {
 
     }
 };
+
+export const changeListName = (userID, listID, name) => dispatch => {
+    try{
+        const response = axios.patch(`/${userID}/name/${listID}`, name);
+        console.log(response);
+    }
+    catch(err) {
+
+    }
+}

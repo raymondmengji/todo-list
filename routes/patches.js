@@ -59,6 +59,37 @@ router.patch('/:userID/lists/:listID', async(req, res) => {
     }
 });
 
+
+//change specific list name
+router.patch('/:userID/name/:listID', async(req, res) => {
+    try{
+        const user = await User.findById(req.params.userID);
+        const temp_lists = []
+        for (var i = 0; i < user.lists.length; i++) {
+            var obj = user.lists[i];
+            if (obj._id == req.params.listID) {
+                let updated_list = new List({
+                    name: req.body.name,
+                    items: obj.items,
+                    time: obj.time,
+                    _id: obj._id
+                })
+                temp_lists.push(updated_list);
+            }
+            else {
+                temp_lists.push(obj);
+            }
+        }
+        const updatedUser = await User.updateOne({_id: req.params.userID}, {$set: {lists: temp_lists}});
+        res.status(200).json(updatedUser);
+    }
+    catch(err) {
+        res.status(400).json({msg: err});
+    }
+});
+
+
+
 //remove all lists from user
 router.patch('/:id/clear', async(req, res) => {
     try{
