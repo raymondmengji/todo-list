@@ -11,5 +11,7 @@ Web app accessible across all browsers except for certain IE versions
 
 ### Technologies Used
 HTML/CSS/Javascript
+
 MERN Stack (MongoDB, Express.js, React, Node.js)
+
 Heroku
