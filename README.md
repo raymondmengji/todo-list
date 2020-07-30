@@ -1,6 +1,10 @@
 # Todo-List
 A new, modern twist on Todo-Lists in a web application form. Users can create and keep track of their various lists and goals.
 
+## Screenshot
+![Screenshot1](/img/img1.png?raw=true)
+![Screenshot2](/img/img2.png?raw=true)
+
 ## Check it out
 
 ### Access
